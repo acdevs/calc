@@ -1,2 +1,2 @@
-# CALC-Web
+# CALC
 JS Built Calculator (HTML & CSS)
