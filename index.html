@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>CALC</title>
-        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/1200px-Flat_tick_icon.svg.png" type="image">
+        <link rel="icon" href="https://icon-library.com/images/letter-c-icon/letter-c-icon-22.jpg" type="image">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -141,7 +141,7 @@
                 margin-left: 290px;
                 padding:5 0 0 40px; 
                 transform: translateX(-0px);
-                transition: transform 0.1s ease-in-out;
+                transition: transform 0.3s ease-in-out;
             }
             
             #sci_pad .operands{
@@ -162,31 +162,24 @@
                 background-color: indianred !important;
                 cursor:not-allowed;
             }
-            #sci_pad #slide_btn{
+            #slide_btn{
                 position: absolute;
                 text-align: center;
                 width: 30px;
                 height: 100%;
                 margin-left: -40px;
-                padding: 130px 0;
-                font-size: 30px;
+                padding: 135px 0;
+                
+            }
+            #slide_btn span{
+                font-size: 20px;
+                color: #dedede;
+            }
+            #sci_pad:hover{
+                transform: translateX(-220px);
             }
         </style>
         <script>
-            var slideState=false;
-            function slide(icon){
-                var slider=document.getElementById('sci_pad');
-                if (slideState){
-                    slider.style.transform='translateX(0px)';
-                    icon.innerHTML='&lsaquo;';
-                    slideState=false;
-                }else{
-                    slider.style.transform='translateX(-220px)';
-                    icon.innerHTML='&rsaquo;';
-                    slideState=true;
-                }
-            }
-            
             var angleState='RAD';
             function setAngle(updateText){
                 var displayText=document.getElementById('angle');
@@ -293,7 +286,7 @@
                 <div class='operands' onclick="express(this)" value='+'>&#43;</div>
             </div>
             <div id='sci_pad'>
-                <div id='slide_btn' onclick="slide(this)" >&lsaquo;</div>
+                <div id='slide_btn'><span class="material-icons">arrow_back_ios_new</span></div>
                 <div class='operands unavailable'>inv</div>
                 <div class='operands' onclick="setAngle(this)">deg</div>
                 <div class='operands' onclick="express(this)" value='%'>%</div>
