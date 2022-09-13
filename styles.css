@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+body{
+    margin:0; 
+}
+*{
+    box-sizing: border-box;
+    cursor: default;
+    user-select: none;
+    transition: 0.1s;
+}
+input::selection{
+    background-color: transparent;
+}
+#container{
+    position: absolute;
+    width: 320px;
+    height: 500px;
+    margin-left: -175px;
+    margin-top: -250px;
+    top:50%;
+    left:50%;
+    background-color: rgb(32,33,35);
+    color: rgb(232,234,237);
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px #212121;
+}
+#up_content{
+    background-color: rgb(45,48,51);
+    position: relative;
+    width: 100%;
+    height: 200px;
+    box-shadow: 0px 2px 5px #212121;
+    z-index: 1;
+}
+#title{
+    position: relative;
+    height: 70px;
+    padding: 35px 10px 0 20px;
+    color: rgb(154,160,166);
+}
+#title .left{
+    float: left;
+    font-size: 18px;
+}
+#title .right{
+    float: right;
+}
+#title .right i{
+    font-size: 25px;
+}
+#display{
+    color: rgb(232,234,237);
+    height: 60px;
+    width: 100%;
+}
+#display input{
+    height: 60px;
+    width: -webkit-fill-available;
+    outline: none;
+    border:none;
+    margin: 0 20px 0 10px;
+    color: inherit;
+    background-color: inherit;
+    caret-color: rgb(138,180,248);
+    font-family: 'Lato', sans-serif;
+    font-size: 45px;
+    text-align: right;
+} 
+
+#mini_display{
+    color: rgb(154,160,166);
+    height: 35px;
+    width: 280px;
+    margin: 10px 20px 10px 20px;
+    font-size: 25px;
+    text-align: right;
+    overflow: hidden;
+}
+#num_pad{
+    background-color: rgb(32,33,35);
+    color: rgb(232,234,237);
+    width: 210px;
+    height: 300px;
+    margin: 0px 5px;
+    padding-top: 10px;
+}
+#num_pad .digits{
+    width: 70px;
+    height: 70px;
+    float: left;
+    font-size: 30px;
+    padding:10px 20px;
+    border:5px solid rgb(32,33,35);
+    border-radius: 50%;
+}
+#num_pad .digits:hover{
+    background-color: rgb(42,43,45);
+}
+#opr_pad{
+    background-color: rgb(32,33,35);
+    color: rgb(138,180,248);
+    width: 100px;
+    height: 300px;
+    margin-top: -300px;
+    margin-left: 215px;
+    border-left: 2px solid #323232;
+    padding:20px 0 0 10px;
+    
+}
+#opr_pad .operands{
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    padding:5px 14px;
+    border:5px solid rgb(32,33,35);
+    border-radius: 50%;
+}
+#opr_pad .operands:hover{
+    background-color: rgb(42,43,45);
+}
+#opr_pad .operands i{
+    margin:5px -5px ;
+    font-size: 20px
+}
+#sci_pad{
+    background-color: rgb(23,78,166);
+    color: rgb(232,234,237);
+    width: 250px;
+    height: 300px;
+    margin-top: -300px;
+    margin-left: 290px;
+    padding:5 0 0 40px; 
+    transform: translateX(-0px);
+    transition: transform 0.3s ease-in-out;
+}
+
+#sci_pad .operands{
+    display: inline-block;
+    width: 58px;
+    height: 58px;
+    font-size: 20px;
+    font-weight: lighter;
+    text-align: center;
+    padding:13px 0px;
+    border:2px solid rgb(23,78,166);
+    border-radius: 50%;
+}
+#sci_pad .operands:hover{
+    background-color: rgb(33,88,176);
+}
+.unavailable:hover{
+    background-color: indianred !important;
+    cursor:not-allowed;
+}
+#slide_btn{
+    position: absolute;
+    text-align: center;
+    width: 30px;
+    height: 100%;
+    margin-left: -40px;
+    padding: 140px 0;
+    transition: 0.5s;
+    transition-delay: 0.3s;
+    transform-origin: center;
+    
+}
+#slide_btn span{
+    font-size: 20px;
+    color: #dedede;
+}
+#sci_pad:hover{
+    transform: translateX(-220px);
+}
+#sci_pad:hover #slide_btn{
+    transform: rotateY(180deg);
+}
