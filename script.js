@@ -8,6 +8,9 @@ function setAngle(updateText){
         sys['sin(']='Math.sin((Math.PI/180)*';
         sys['cos(']='Math.cos((Math.PI/180)*';
         sys['tan(']='Math.tan((Math.PI/180)*';
+        sys['asin(']='(180/Math.PI)*Math.asin(';
+        sys['acos(']='(180/Math.PI)*Math.acos(';
+        sys['atan(']='(180/Math.PI)*Math.atan(';
     }else{
         displayText.innerHTML='RAD';
         updateText.innerHTML='deg';
@@ -15,6 +18,9 @@ function setAngle(updateText){
         sys['sin(']='Math.sin(';
         sys['cos(']='Math.cos(';
         sys['tan(']='Math.tan(';
+        sys['asin(']='Math.asin(';
+        sys['acos(']='Math.acos(';
+        sys['atan(']='Math.atan(';
     }
 }
 
@@ -54,9 +60,12 @@ const sys={
     '^':'**','π':'Math.PI','e':'Math.E',
     '(':'(',')':')','!':'!'
     };
-
 function express(putValue){
     let sym = putValue.getAttribute("value");
+    if (expression.value == 'Error'){
+        expression.value='';
+        eval_express='';
+    }
     expression.value+=sym;
     eval_express += sys[sym];
     expression.scrollBy(1000,0);
@@ -65,29 +74,34 @@ function express(putValue){
 
 function miniResult(getIt){
     try{
-        result=eval(getIt);
-        if (result == undefined){
-            result='';
-            return result;
+        if (getIt === ''){
+            return ''; //equals on no input!
         }
-        result= parseFloat(result.toFixed(13));
-        mini_result.innerHTML= result;
-        mini_result.scrollBy(1000,0);
-        return result;
+        result=eval(getIt);
+        if ( isNaN(result) ){
+            result='Not a number';
+        }else{
+            result= parseFloat(result.toFixed(13));
+        }
     }
     catch(err){
-        result=''
-        return result;
+        result='. . .'
     }
+    mini_result.innerHTML= result;
+    mini_result.scrollBy(1000,0);
+    return result;
 }
 
 function backspace(){
     expression.value='';
     eval_express='';
-    miniResult(eval_express);
-    mini_result.innerHTML=''
+    mini_result.innerHTML='';
 }
 function display(){
-    expression.value=miniResult(eval_express);
+    let view=miniResult(eval_express);
+    if (view == '. . .' || view == 'Not a number'){
+        view='Error'
+    }
+    expression.value=view;
     mini_result.innerHTML='';
 }

@@ -5,7 +5,7 @@ body{
 *{
     box-sizing: border-box;
     user-select: none;
-    cursor: pointer;
+    cursor: default;
     transition: 0.1s;
 }
 input::selection{
@@ -43,12 +43,6 @@ input::selection{
 #title .left{
     float: left;
     font-size: 18px;
-}
-#title .right{
-    float: right;
-}
-#title .right i{
-    font-size: 25px;
 }
 #display{
     color: rgb(232,234,237);
@@ -149,10 +143,6 @@ input::selection{
 }
 #sci_pad .operands:hover{
     background-color: rgb(33,88,176);
-}
-.unavailable:hover{
-    background-color: indianred !important;
-    cursor:not-allowed;
 }
 #slide_btn{
     position: absolute;
