@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 body{
-    margin:0; 
+    margin:0;
 }
 *{
     box-sizing: border-box;
-    cursor: default;
     user-select: none;
+    cursor: pointer;
     transition: 0.1s;
 }
 input::selection{
@@ -160,14 +160,13 @@ input::selection{
     width: 30px;
     height: 100%;
     margin-left: -40px;
-    padding: 140px 0;
+    padding: 130px 0;
     transition: 0.5s;
-    transition-delay: 0.3s;
+    transition-delay: 0.1s;
     transform-origin: center;
-    
 }
 #slide_btn span{
-    font-size: 20px;
+    font-size: 30px;
     color: #dedede;
 }
 #sci_pad:hover{
@@ -175,4 +174,7 @@ input::selection{
 }
 #sci_pad:hover #slide_btn{
     transform: rotateY(180deg);
+}
+sup{
+    font-size: 12px;
 }

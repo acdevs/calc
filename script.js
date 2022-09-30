@@ -1,16 +1,16 @@
-var angleState='RAD';
+let angleState='RAD';
 function setAngle(updateText){
-    var displayText=document.getElementById('angle');
+    let displayText=document.getElementById('angle');
     if (angleState == 'RAD'){
         displayText.innerHTML='DEG';
-        updateText.innerHTML='deg';
+        updateText.innerHTML='rad';
         angleState='DEG';
         sys['sin(']='Math.sin((Math.PI/180)*';
         sys['cos(']='Math.cos((Math.PI/180)*';
         sys['tan(']='Math.tan((Math.PI/180)*';
     }else{
         displayText.innerHTML='RAD';
-        updateText.innerHTML='rad';
+        updateText.innerHTML='deg';
         angleState='RAD';
         sys['sin(']='Math.sin(';
         sys['cos(']='Math.cos(';
@@ -18,51 +18,76 @@ function setAngle(updateText){
     }
 }
 
+let inverseState= false;
+function setInverse(updateText){
+    let Elems= document.getElementsByClassName('inv');
+    const revStates= ['sin', 'cos', 'tan', 'ln', 'log'];
+    const invStates= ['asin', 'acos', 'atan', 'exp', '10^'];
+    if (!inverseState){
+        updateText.innerHTML='rev';
+        inverseState= true;
+        for(let i=0; i<5; i++){
+            Elems[i].innerHTML=invStates[i];
+            Elems[i].setAttribute("value",`${invStates[i]}(`);
+        }
+    }else{
+        updateText.innerHTML='inv';
+        inverseState= false;
+        for(let i=0; i<5; i++){
+            Elems[i].innerHTML=revStates[i];
+            Elems[i].setAttribute("value",`${revStates[i]}(`);
+        }
+    }
+}
 
-var eval_express='';
+let eval_express='';
+let expression=document.getElementById('expression');
+let mini_result=document.getElementById('mini_display');
 
-var sys={
+const sys={
     '9':'9','8':'8','7':'7','6':'6','5':'5','4':'4','3':'3','2':'2','1':'1','0':'0',
     '.':'.','+':'+','-':'-','×':'*','÷':'/','%':'*0.01',
     'sin(':'Math.sin(','cos(':'Math.cos(','tan(':'Math.tan(',
     'ln(':'Math.log(','log(':'Math.log10(','√(':'Math.sqrt(',
-    'π':'Math.PI','e':'Math.E',
+    'asin(':'Math.asin(','acos(':'Math.acos(','atan(':'Math.atan(',
+    'exp(':'Math.exp(','10^(':'Math.pow(10,',
+    '^':'**','π':'Math.PI','e':'Math.E',
     '(':'(',')':')','!':'!'
     };
 
 function express(putValue){
-    var expression=document.getElementById('expression');
-    var sym = putValue.getAttribute("value");
+    let sym = putValue.getAttribute("value");
     expression.value+=sym;
     eval_express += sys[sym];
-    expression.scrollBy(40,0);
+    expression.scrollBy(1000,0);
     miniResult(eval_express);
 }
 
 function miniResult(getIt){
-    var mini_result=document.getElementById('mini_display');
     try{
         result=eval(getIt);
         if (result == undefined){
-            result=''
+            result='';
+            return result;
         }
-    }catch(err){
-        result=''
+        result= parseFloat(result.toFixed(13));
+        mini_result.innerHTML= result;
+        mini_result.scrollBy(1000,0);
+        return result;
     }
-    mini_result.innerHTML= result;
-    mini_result.scrollBy(30,0);
-    return result;
+    catch(err){
+        result=''
+        return result;
+    }
 }
 
 function backspace(){
-    var expression=document.getElementById('expression');
     expression.value='';
     eval_express='';
     miniResult(eval_express);
+    mini_result.innerHTML=''
 }
 function display(){
-    var expression=document.getElementById('expression');
-    var mini_result=document.getElementById('mini_display');
     expression.value=miniResult(eval_express);
     mini_result.innerHTML='';
 }
