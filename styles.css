@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-body{
-    margin:0;
-}
 *{
     box-sizing: border-box;
     user-select: none;
-    cursor: default;
+    -webkit-tap-highlight-color: transparent;
     transition: 0.1s;
+}
+body{
+    margin:0;
 }
 input::selection{
     background-color: transparent;
 }
 #container{
     position: absolute;
-    width: 320px;
+    width: 500px;
     height: 500px;
-    margin-left: -175px;
+    margin-left: -250px;
     margin-top: -250px;
     top:50%;
     left:50%;
@@ -26,7 +26,8 @@ input::selection{
     font-weight: bold;
     box-shadow: 0px 2px 5px #212121;
 }
-#up_content{
+#display_view{
+    position: absolute;
     background-color: rgb(45,48,51);
     position: relative;
     width: 100%;
@@ -45,69 +46,79 @@ input::selection{
     font-size: 18px;
 }
 #display{
+    position: absolute;
     color: rgb(232,234,237);
-    height: 60px;
-    width: 100%;
-}
-#display input{
+    background-color: inherit;
     height: 60px;
     width: -webkit-fill-available;
-    outline: none;
-    border:none;
-    margin: 0 20px 0 10px;
-    color: inherit;
-    background-color: inherit;
-    caret-color: rgb(138,180,248);
+    margin: 0 15px;
     font-family: 'Lato', sans-serif;
     font-size: 45px;
     text-align: right;
-} 
-
+    bottom: 55px;
+}
 #mini_display{
+    position: absolute;
     color: rgb(154,160,166);
     height: 35px;
-    width: 280px;
-    margin: 10px 20px 10px 20px;
+    width: -webkit-fill-available;
+    margin: 10px 20px;
+    bottom: 0;
     font-size: 25px;
     text-align: right;
-    overflow: hidden;
+    text-overflow: ellipsis ;
+}
+#control_panel{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 1;
 }
 #num_pad{
+    position: absolute;
     background-color: rgb(32,33,35);
     color: rgb(232,234,237);
     width: 210px;
-    height: 300px;
-    margin: 0px 5px;
-    padding-top: 10px;
+    height: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
 }
 #num_pad .digits{
+    cursor: pointer;
     width: 70px;
     height: 70px;
     float: left;
     font-size: 30px;
-    padding:10px 20px;
-    border:5px solid rgb(32,33,35);
+    padding: 10px 20px;
+    border: 5px solid rgb(32,33,35);
     border-radius: 50%;
 }
 #num_pad .digits:hover{
     background-color: rgb(42,43,45);
 }
 #opr_pad{
+    position: absolute;
     background-color: rgb(32,33,35);
     color: rgb(138,180,248);
-    width: 100px;
+    width: 90px;
     height: 300px;
-    margin-top: -300px;
     margin-left: 215px;
     border-left: 2px solid #323232;
-    padding:20px 0 0 10px;
-    
+    padding:0 10px;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
 }
 #opr_pad .operands{
+    cursor: pointer;
     width: 50px;
     height: 50px;
     font-size: 25px;
-    padding:5px 14px;
+    padding:4px 13px;
     border:5px solid rgb(32,33,35);
     border-radius: 50%;
 }
@@ -115,22 +126,26 @@ input::selection{
     background-color: rgb(42,43,45);
 }
 #opr_pad .operands i{
-    margin:5px -5px ;
+    margin:6px -4px ;
     font-size: 20px
 }
 #sci_pad{
+    position: absolute;
     background-color: rgb(23,78,166);
     color: rgb(232,234,237);
-    width: 250px;
+    width: 210px;
     height: 300px;
-    margin-top: -300px;
     margin-left: 290px;
-    padding:5 0 0 40px; 
-    transform: translateX(-0px);
+    padding: 5px 17.5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center; 
     transition: transform 0.3s ease-in-out;
 }
 
 #sci_pad .operands{
+    cursor: pointer;
     display: inline-block;
     width: 58px;
     height: 58px;
@@ -146,25 +161,218 @@ input::selection{
 }
 #slide_btn{
     position: absolute;
-    text-align: center;
     width: 30px;
     height: 100%;
     margin-left: -40px;
-    padding: 130px 0;
-    transition: 0.5s;
-    transition-delay: 0.1s;
+    transition: 0.25s;
     transform-origin: center;
+    display: none;
+    flex-direction:column;
+    justify-content: center;
 }
 #slide_btn span{
     font-size: 30px;
     color: #dedede;
 }
-#sci_pad:hover{
-    transform: translateX(-220px);
+#display sup{
+    font-size: 25px;
 }
-#sci_pad:hover #slide_btn{
-    transform: rotateY(180deg);
-}
-sup{
+#sci_pad sup{
     font-size: 12px;
+}
+
+
+
+@media only screen  and (max-width:800px){
+
+    input::selection{
+        background-color: rgb(138,180,248);
+        color: rgb(0, 0, 0);
+    }
+    #container{
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        margin-left: 0;
+        margin-top: 0;
+        top: 0;
+        left: 0;
+        background-color: rgb(32,33,35);
+        color: rgb(232,234,237);
+        font-family: 'Lato', sans-serif;
+        overflow: hidden;
+        font-weight: bold;
+        box-shadow: none;
+    }
+    #display_view{
+        position: absolute;
+        background-color: rgb(45,48,51);
+        position: relative;
+        width: 100%;
+        height: 50%;
+        box-shadow: 0px 5vw 10vw #212121;
+        z-index: 1;
+    }
+    #title{
+        position: relative;
+        height: 20vw;
+        padding: 10vw;
+        color: rgb(154,160,166);
+    }
+    #title .left{
+        float: left;
+        font-size: 8vw;
+    }
+    #display{
+        position: absolute;
+        color: rgb(232,234,237);
+        background-color: inherit;
+        height: 15vw;
+        width: -webkit-fill-available;
+        margin: 0 2.5vw;
+        font-family: 'Lato', sans-serif;
+        font-size: 15vw;
+        text-align: right;
+        bottom: 25vw;
+    }
+    #mini_display{
+        position: absolute;
+        color: rgb(154,160,166);
+        height: fit-content;
+        width: -webkit-fill-available;
+        margin: 6vw 4vw;
+        bottom: 0;
+        font-size: 10vw;
+        text-align: right;
+        overflow: hidden;
+    }
+    #control_panel{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+    }
+    #num_pad{
+        position: absolute;
+        background-color: rgb(32,33,35);
+        color: rgb(232,234,237);
+        width: 67.5vw;
+        height: 100%;
+        padding: 2.5vw 0;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+    }
+    #num_pad .digits{
+        cursor: pointer;
+        width: 22.5vw;
+        height: 22.5vw;
+        float: left;
+        font-size: 10vw;
+        padding: 2.5vw 5.5vw;
+        border: 2.5vw solid rgb(32,33,35);
+        border-radius: 50%;
+    }
+    #num_pad .digits:hover{
+        background-color: rgb(42,43,45);
+    }
+    #opr_pad{
+        position: absolute;
+        background-color: rgb(32,33,35);
+        color: rgb(138,180,248);
+        width: 22.5vw;
+        height: 100%;
+        margin-left: 67.5vw;
+        border-left: .5vw solid #323232;
+        padding: 0 2.5vw;
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+    }
+    #opr_pad .operands{
+        cursor: pointer;
+        width: 18vw;
+        height: 18vw;
+        font-size: 8vw;
+        padding: 1.5vw 4vw;
+        border: 2.5vw solid rgb(32,33,35);
+        border-radius: 50%;
+    }
+    #opr_pad .operands:hover{
+        background-color: rgb(42,43,45);
+    }
+    #opr_pad .operands i{
+        margin: 1vw -2vw;
+        font-size: 8vw;
+    }
+    #sci_pad{
+        position: absolute;
+        background-color: rgb(23,78,166);
+        color: rgb(232,234,237);
+        width: 80vw;
+        height: 100%;
+        right: 0;
+        padding: 1.5vw 10vw 1.5vw 12.5vw;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        transition: transform 0.25s ease-in-out;
+    }
+    
+    #sci_pad .operands{
+        cursor: pointer;
+        display: inline-block;
+        width: 16vw;
+        height: 16vw;
+        font-size: 6vw;
+        font-weight: lighter;
+        text-align: center;
+        padding: 4vw 2vw;
+        margin: 0 1.5vw;
+        border: none;
+        border-radius: 50%;
+    }
+    .slideR{
+        transform: translateX(0) !important;
+    }
+    .slideL{
+        transform: translateX(72vw) !important;
+    }
+    #sci_pad .operands:hover{
+        background-color: rgb(33,88,176);
+    }
+    #slide_btn{
+        position: absolute;
+        width: 8vw;
+        height: 100%;
+        margin-left: -12.5vw;
+        transition: 0.25s;
+        transform-origin: center;
+        text-align: center;
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+    }
+    #slide_btn span{
+        font-size: 8vw;
+        font-weight: bold;
+        color: #dedede;
+    }
+    #sci_pad:hover{
+        transform: unset;
+    }
+    .slideR #slide_btn{
+        transform: rotateY(180deg) !important;
+    }
+    .slideL #slide_btn{
+        transform: rotateY(0deg) !important;
+    }
+    #display sup{
+        font-size: 8vw;
+    }
+    #sci_pad sup{
+        font-size: 2.5vw;
+    }
 }
