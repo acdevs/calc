@@ -55,7 +55,7 @@ const sys={
     '9':'9','8':'8','7':'7','6':'6','5':'5','4':'4','3':'3','2':'2','1':'1','0':'0','.':'.','+':'+','-':'-','×':'*','÷':'/','%':'*0.01',
     'sin(':'Math.sin(','cos(':'Math.cos(','tan(':'Math.tan(','ln(':'Math.log(','log(':'Math.log10(','√(':'Math.sqrt(',
     'sin<sup>&minus;1</sup>(':'Math.asin(','cos<sup>&minus;1</sup>(':'Math.acos(','tan<sup>&minus;1</sup>(':'Math.atan(',
-    'exp(':'Math.exp(','10^(':'Math.pow(10,','^':'**','π':'Math.PI','e':'Math.E','(':'(',')':')','!':'!','&infin;':'Infinity'
+    'exp(':'Math.exp(','10^(':'Math.pow(10,','^':'**','π':'Math.PI','e':'Math.E','(':'(',')':')','∞':'Infinity'
     };
 function express(putValue){
     let sym = putValue.getAttribute("value");
@@ -79,9 +79,9 @@ function miniResult(getIt){
         if ( isNaN(result) ){
             result='Not a number';
         }else if ( ! isFinite(result) ){
-            result= '&infin;';
+            result= '∞';
         }else{
-            result= parseFloat(result.toFixed(13));
+            result= parseFloat(result.toFixed(7));
         }
     }
     catch(err){
@@ -104,7 +104,7 @@ function display(){
     eval_express= [];
     if (view == '. . .' || view == 'Not a number'){
         view='Error'
-    }else if (view == '&infin;'){
+    }else if (view == '∞'){
         eval_express.push(sys[view].toString())
         expression_view.push(view.toString());
     }else{
