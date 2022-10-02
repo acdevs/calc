@@ -5,11 +5,11 @@
     -webkit-tap-highlight-color: transparent;
     transition: 0.1s;
 }
+*::-webkit-scrollbar{
+    display: none;
+}
 body{
     margin:0;
-}
-input::selection{
-    background-color: transparent;
 }
 #container{
     position: absolute;
@@ -56,6 +56,10 @@ input::selection{
     font-size: 45px;
     text-align: right;
     bottom: 55px;
+    overflow: scroll;
+}
+#display sup{
+    font-size: 25px;
 }
 #mini_display{
     position: absolute;
@@ -174,21 +178,14 @@ input::selection{
     font-size: 30px;
     color: #dedede;
 }
-#display sup{
-    font-size: 25px;
-}
 #sci_pad sup{
     font-size: 12px;
 }
 
 
 
-@media only screen  and (max-width:800px){
+@media only screen  and (max-width:600px){
 
-    input::selection{
-        background-color: rgb(138,180,248);
-        color: rgb(0, 0, 0);
-    }
     #container{
         position: absolute;
         width: 100vw;
@@ -227,13 +224,16 @@ input::selection{
         position: absolute;
         color: rgb(232,234,237);
         background-color: inherit;
-        height: 15vw;
+        height: 20vw;
         width: -webkit-fill-available;
         margin: 0 2.5vw;
         font-family: 'Lato', sans-serif;
         font-size: 15vw;
         text-align: right;
-        bottom: 25vw;
+        bottom: 20vw;
+    }
+    #display sup{
+        font-size: 8vw;
     }
     #mini_display{
         position: absolute;
@@ -368,9 +368,6 @@ input::selection{
     }
     .slideL #slide_btn{
         transform: rotateY(0deg) !important;
-    }
-    #display sup{
-        font-size: 8vw;
     }
     #sci_pad sup{
         font-size: 2.5vw;
